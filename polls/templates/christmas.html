@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Christmas Holliday</title>
         <style>
-            h1 {
+            h1, h2 {
                 text-align: center;
             }
         </style>
@@ -15,7 +15,12 @@
         {% if christmas %}
             <h1>It's Christmas</h1>
         {% else %}
-            <h1>I'ts not Christmas!</h1>
+            {% if lasting > 0%}
+                <h1>I'ts not Christmas!</h1>
+                <h2>{{lasting}} days left for Christmas!</h2>
+            {% else %}
+                <h1>Christmas already passed!</h1>
+            {% endif %}
         {% endif %}
     </body>
 </html>
