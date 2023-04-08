@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>hollidays</title>
+        {% load static %}
+        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    </head>
+    <body>
+        <form class="holliday_form">
+            <label>
+                Enter the date:
+            <input class="inputing" type="date" name="holliday" value="1000-01-01" />
+            </label>
+        
+            <p><button class="submit">Submit</button></p>
+        </form>
+        <div>
+            <h2>
+                <p>There're {{all_results|length}} Countries that the day {{date.day}}/{{date.month}}
+                    is a Holliday!
+                </p>
+            </h2>
+        </div>
+        <div class="results">
+            {% if all_results|length > 0%}
+                {% for holliday in all_results %}
+                    <div class="card">
+                        <img src= {{ holliday.flag }} alt="flag"/>
+                        <div class="container">
+                            <h4><b>{{ holliday.description }}</b></h4>
+                            <p>{{ holliday.country }}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <h2> No holidays found :/</h2>
+            {% endif %}
+        </div>
+    </body>
+    <footer>
+        <hr>
+        Developed by: Leandro Alves
+    </footer>
+</html>
