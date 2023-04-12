@@ -19,12 +19,15 @@ def check_holliday(date: datetime.date) -> dict:
             all_results.append(occurrence)
         return {"all_results": all_results}
     return {"all_results": {}}
-    
+
 
 def index(request) -> render:
     date = request.GET.get("holliday")
-    final_date = datetime.strptime(date, '%Y-%m-%d').date()
-    if final_date.day == 1 and final_date.month == 1:
+    if date:
+        final_date = datetime.strptime(date, '%Y-%m-%d').date()
+        if final_date.day == 1 and final_date.month == 1:
+            final_date = datetime.now()
+    else: 
         final_date = datetime.now()
     hollidays = check_holliday(final_date)
     hollidays['date'] = final_date
